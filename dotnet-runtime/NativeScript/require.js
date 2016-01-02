@@ -7,9 +7,6 @@
 (function (applicationPath, createModuleFunction) {
     'use strict';
 
-    log("require this: " + this);
-
-
     String.prototype.template = function (data) {
         return this.replace(/\${(.*?)}/g, function (_, code) {
             var scoped = code.replace(/(["'\.\w\$]+)/g, function (match) {
@@ -56,17 +53,21 @@
     };
 
     var console = {
+        enbleDebug: false,
+
         log: function (value) {
             log(value);
         },
         debug: function (p1, p2, p3, p4, p5, p6) {
-            var value = p1.toString();
-            if (p2) value += p2.toString();
-            if (p3) value += p3.toString();
-            if (p4) value += p4.toString();
-            if (p5) value += p5.toString();
-            if (p6) value += p6.toString();
-            this.log(value);
+            if (this.enbleDebug) {
+                var value = p1.toString();
+                if (p2) value += p2.toString();
+                if (p3) value += p3.toString();
+                if (p4) value += p4.toString();
+                if (p5) value += p5.toString();
+                if (p6) value += p6.toString();
+                this.log(value);
+            }            
         }
     };
 
@@ -75,6 +76,9 @@
 
     var isDirectory = { value: false };
     var defaultPreviousPath = System.IO.Path.Combine(USER_MODULES_ROOT, 'index.js');
+    
+    var pathCache = new Map();
+    var modulesCache = new Map();
 
     function getRelativeToBundlePath(absolutePath) {
         var relativePath = absolutePath.substr(applicationPath.length).replace(/^\//, '');
@@ -90,7 +94,7 @@
     }
 
     function __findModule(moduleIdentifier, previousPath) {
-        console.log("__findModule(moduleIdentifier: " + moduleIdentifier + ", previousPath: " + previousPath + ")");
+        console.debug("__findModule(moduleIdentifier: " + moduleIdentifier + ", previousPath: " + previousPath + ")");
 
         var isBootstrap = !previousPath;
         if (isBootstrap) {
@@ -178,7 +182,7 @@
     }
 
     function __executeModule(moduleMetadata, module) {
-        console.log("__executeModule(moduleMetadata: " + moduleMetadata + ", module: " + module + ")");
+        console.debug("__executeModule(moduleMetadata: " + moduleMetadata + ", module: " + module + ")");
 
         var modulePath = moduleMetadata.bundlePath;
         var moduleSource = System.IO.File.ReadAllText(moduleMetadata.path);
@@ -218,7 +222,7 @@
     }
 
     function __loadModule(moduleIdentifier, previousPath) {
-        console.log("__loadModule(moduleIdentifier: " + moduleIdentifier + ", previousPath: " + previousPath + ")");
+        console.debug("__loadModule(moduleIdentifier: " + moduleIdentifier + ", previousPath: " + previousPath + ")");
 
         if (/\.js$/.test(moduleIdentifier)) {
             moduleIdentifier = moduleIdentifier.replace(/\.js$/, '');

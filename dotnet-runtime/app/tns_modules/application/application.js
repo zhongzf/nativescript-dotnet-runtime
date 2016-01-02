@@ -3,6 +3,8 @@ var RaisingStudio = importNamespace("RaisingStudio");
 var windowModule = require("ui/window");
 var dependencyObservable = require("ui/core/dependency-observable");
 
+exports.resources = undefined;
+
 var Application = (function (_super) {
     __extends(Application, _super);
     function Application() {
@@ -15,8 +17,10 @@ var Application = (function (_super) {
     return Application;
 })(dependencyObservable.DependencyObservable);
 
+var application = new Application();
+exports.dotnet = application;
+
 exports.start = function () {
-    var application = new Application();
     var mainPageModule = require("../app/" + exports.mainModule + ".js");
     var window = new mainPageModule.MainPage();
     window.load(exports.mainModule + ".paml");

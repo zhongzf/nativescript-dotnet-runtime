@@ -14,6 +14,11 @@ var MainPage = (function (_super) {
         button.add_Click(function (sender, e) {
             var textbox = that.find(Perspex.Controls.TextBlock, "textbox");
             textbox.Text += "\nbutton clicked.";
+
+            //var buttonModule = require("ui/button");
+            //var btn = new buttonModule.Button();
+            //btn.Content = "new button";
+            //button.Parent.Children.Add(btn.dotnet);
         });
     };
     return MainPage;
