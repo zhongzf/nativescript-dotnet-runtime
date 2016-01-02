@@ -28,6 +28,7 @@ var Button = (function (_super) {
     }
     Button.prototype._onBindingContextChanged = function (oldValue, newValue) {
         _super.prototype._onBindingContextChanged.call(this, oldValue, newValue);
+        this.dotnet.Content = newValue;
     };
     Object.defineProperty(Button.prototype, "text", {
         get: function () {
@@ -40,7 +41,7 @@ var Button = (function (_super) {
         configurable: true
     });
     Button.prototype._onTextPropertyChanged = function (data) {
-        // TODO:
+        this.dotnet.Content = data.newValue + "";
     };
     Button.tapEvent = "tap";
     Button.textProperty = textProperty;

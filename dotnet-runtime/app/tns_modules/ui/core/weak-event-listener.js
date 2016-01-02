@@ -2,7 +2,7 @@ var types = require("utils/types");
 log("weak-event-listener: 1");
 
 var handlersForEventName = new Map();
-var sourcesMap = new WeakMap();
+var sourcesMap = new Map(); //new WeakMap();
 var TargetHandlerPair = (function () {
     function TargetHandlerPair(target, handler) {
         this.tagetRef = new WeakRef(target);
