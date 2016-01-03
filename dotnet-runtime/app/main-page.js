@@ -17,8 +17,7 @@ var MainPage = (function (_super) {
 
             var buttonModule = require("ui/button");
             var btn = new buttonModule.Button();
-            //btn.text = "new button";
-            btn.dotnet.Content = "new button";
+            btn.text = "new button with text";
             button.Parent.Children.Add(btn.dotnet);
         });
     };

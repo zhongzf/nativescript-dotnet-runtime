@@ -40,7 +40,7 @@
             return System.String.IsNullOrEmpty(path)
                 ? ""
                 : System.IO.Path.DirectorySeparatorChar != '/'
-                    ? path.replace(/(\/)/, System.IO.Path.DirectorySeparatorChar)
+                    ? path.replace(/\//, System.IO.Path.DirectorySeparatorChar)
                     : path;
         },
         fileExistsAtPathIsDirectory: function (path, isDirectory) {

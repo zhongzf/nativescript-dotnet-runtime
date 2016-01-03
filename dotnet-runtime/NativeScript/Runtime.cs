@@ -20,8 +20,14 @@ namespace RaisingStudio.NativeScript
         public static readonly Runtime Instance = new Runtime();
 #if DEBUG
         public const bool DebugMode = true;
+        public static readonly string[] DebugFileList = new string[]
+        {
+            "button-common.js",
+            "button.js"
+        };
 #else
         public const bool DebugMode = false;
+        public static readonly string[] DebugFileList = new string[] {};
 #endif
 
         private Runtime()
@@ -41,12 +47,21 @@ namespace RaisingStudio.NativeScript
             }
         }
 
+        private static bool IsAllowDebug(string filePath)
+        {
+            var fileName = (new FileInfo(filePath)).Name;
+            return DebugFileList.Contains(fileName, StringComparer.OrdinalIgnoreCase);
+        }
+
         private StepMode Runtime_Step(object sender, DebugInformation e)
         {
-            if (!(new[] { "__extends.js", "es6-shim.js", "require.js" }.Contains(e.CurrentStatement.Location.Source)))
+            //if (!(new[] { "__extends.js", "es6-shim.js", "require.js" }.Contains(e.CurrentStatement.Location.Source)))
+            //{
+            if (IsAllowDebug(e.CurrentStatement.Location.Source))
             {
                 Console.WriteLine("{0}: Line {1}, Char {2}, Source {3}", e.CurrentStatement.ToString(), e.CurrentStatement.Location.Start.Line, e.CurrentStatement.Location.Start.Column, e.CurrentStatement.Location.Source);
             }
+            //}
             return StepMode.Into;
         }
 
@@ -55,7 +70,14 @@ namespace RaisingStudio.NativeScript
 
         public Engine Execute(string source, string name)
         {
-            return this.Execute(source, DebugMode ? new ParserOptions { Source = name } : null);
+            var sourceName = string.IsNullOrEmpty(name) ? name : FixSourceName(name);
+            return this.Execute(source, DebugMode ? new ParserOptions { Source = sourceName } : null);
+        }
+
+        private string FixSourceName(string name)
+        {
+            var uri = new Uri(name, UriKind.RelativeOrAbsolute);
+            return uri.IsAbsoluteUri ? uri.AbsolutePath : uri.OriginalString;
         }
 
         public void Init(string applicationPath)

@@ -1,15 +1,9 @@
 var types = require("utils/types");
 var proxy = require("ui/core/proxy");
-watch(proxy);
 var trace = require("trace");
-watch(proxy);
 var dependencyObservable = require("ui/core/dependency-observable");
 var bindable = require("ui/core/bindable");
-log("view-common: 1");
-watch(bindable);
 var enums = require("ui/enums");
-watch(enums);
-log("view-common: 2");
 
 function getViewById(view, id) {
 }
@@ -33,7 +27,6 @@ var View = (function (_super) {
         this._cssClasses = [];
         this._options = options;
     }
-
     View.prototype.getViewById = function (id) {
         return getViewById(this, id);
     };

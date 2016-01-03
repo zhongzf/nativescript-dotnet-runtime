@@ -1,5 +1,4 @@
 var types = require("utils/types");
-log("weak-event-listener: 1");
 
 var handlersForEventName = new Map();
 var sourcesMap = new Map(); //new WeakMap();

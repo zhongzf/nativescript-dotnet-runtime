@@ -41,6 +41,13 @@ var ProxyObject = (function (_super) {
         enumerable: true,
         configurable: true
     });
+    Object.defineProperty(ProxyObject.prototype, "dotnet", {
+        get: function () {
+            return undefined;
+        },
+        enumerable: true,
+        configurable: true
+    });
     ProxyObject.prototype._onPropertyChanged = function (property, oldValue, newValue) {
         _super.prototype._onPropertyChanged.call(this, property, oldValue, newValue);
         this._trySetNativeValue(property, oldValue, newValue);

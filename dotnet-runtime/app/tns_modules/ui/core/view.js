@@ -1,11 +1,7 @@
-log("view: 1");
-//var viewCommon = require("ui/core/view-common");
-log("view: 2");
-//watch(viewCommon);
-//var trace = require("trace");
-//require("utils/module-merge").merge(viewCommon, exports);
+var viewCommon = require("ui/core/view-common");
+var trace = require("trace");
+require("utils/module-merge").merge(viewCommon, exports);
 var dependencyObservable = require("ui/core/dependency-observable");
-
 
 var PFLAG_FORCE_LAYOUT = 1;
 var PFLAG_MEASURED_DIMENSION_SET = 1 << 1;
@@ -20,7 +16,7 @@ var View = (function (_super) {
     View.prototype.onLoaded = function () {
     };
     return View;
-})(dependencyObservable.DependencyObservable/*viewCommon.View*/);
+})(viewCommon.View);
 exports.View = View;
 
 var CustomLayoutView = (function (_super) {

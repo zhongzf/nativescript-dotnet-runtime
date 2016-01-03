@@ -5,8 +5,8 @@ var appModule = require("application");
 var types = require("utils/types");
 var trace = require("trace");
 var polymerExpressions = require("js-libs/polymer-expressions");
-//var bindingBuilder = require("../builder/binding-builder");
-//var viewModule = require("ui/core/view");
+var bindingBuilder = require("ui/builder/binding-builder");
+var viewModule = require("ui/core/view");
 var bindingContextProperty = new dependencyObservable.Property("bindingContext", "Bindable", new dependencyObservable.PropertyMetadata(undefined, dependencyObservable.PropertyMetadataSettings.Inheritable, onBindingContextChanged));
 function onBindingContextChanged(data) {
     var bindable = data.object;
@@ -15,9 +15,7 @@ function onBindingContextChanged(data) {
 var contextKey = "context";
 var paramsRegex = /\[\s*(['"])*(\w*)\1\s*\]/;
 var parentsRegex = /\$parents\s*\[\s*(['"]*)\w*\1\s*\]/g;
-// TODO: bindingBuilder.bindingConstants
-//var bc = bindingBuilder.bindingConstants;
-var bc = {};
+var bc = bindingBuilder.bindingConstants;
 var Bindable = (function (_super) {
     __extends(Bindable, _super);
     function Bindable() {
@@ -71,12 +69,11 @@ var Bindable = (function (_super) {
         trace.write("Bindable._onPropertyChanged(" + this + ") " + property.name, trace.categories.Binding);
         _super.prototype._onPropertyChanged.call(this, property, oldValue, newValue);
 
-        // TODO: viewModule.View
-        //if (this instanceof viewModule.View) {
-        //    if (property.metadata.inheritable && this._isInheritedChange() === true) {
-        //        return;
-        //    }
-        //}
+        if (this instanceof viewModule.View) {
+            if (property.metadata.inheritable && this._isInheritedChange() === true) {
+                return;
+            }
+        }
 
         var binding = this._bindings[property.name];
         if (binding && !binding.updating) {
