@@ -1,4 +1,4 @@
-var Perspex = importNamesapce("Perspex");
+var Perspex = importNamespace("Perspex");
 
 var common = require("ui/text-view/text-view-common");
 require("utils/module-merge").merge(common, exports);

@@ -2,6 +2,7 @@ var observable = require("data/observable");
 var types = require("utils/types");
 var propertyFromKey = {};
 var propertyIdCounter = 0;
+
 function generatePropertyKey(name, ownerType, validate) {
     if (validate) {
         validateRegisterParameters(name, ownerType);
@@ -30,6 +31,7 @@ function getPropertyByNameAndType(name, owner) {
     }
     return result;
 }
+
 var PropertyMetadataSettings;
 (function (PropertyMetadataSettings) {
     PropertyMetadataSettings.None = 0;
@@ -45,6 +47,7 @@ var ValueSource;
     ValueSource.Local = 3;
     ValueSource.VisualState = 4;
 })(ValueSource = exports.ValueSource || (exports.ValueSource = {}));
+
 var PropertyMetadata = (function () {
     function PropertyMetadata(defaultValue, options, onChanged, onValidateValue, equalityComparer) {
         this._defaultValue = defaultValue;
@@ -118,6 +121,7 @@ var PropertyMetadata = (function () {
     return PropertyMetadata;
 })();
 exports.PropertyMetadata = PropertyMetadata;
+
 var Property = (function () {
     function Property(name, ownerType, metadata, valueConverter) {
         this._key = generatePropertyKey(name, ownerType, true);
@@ -131,6 +135,7 @@ var Property = (function () {
         this._name = name;
         this._ownerType = ownerType;
         this._metadata = metadata;
+
         if (!metadata.options) {
             metadata.options = PropertyMetadataSettings.None;
         }
@@ -186,6 +191,7 @@ var Property = (function () {
     return Property;
 })();
 exports.Property = Property;
+
 var PropertyEntry = (function () {
     function PropertyEntry(property) {
         this._property = property;
@@ -272,6 +278,7 @@ var PropertyEntry = (function () {
     return PropertyEntry;
 })();
 exports.PropertyEntry = PropertyEntry;
+
 var DependencyObservable = (function (_super) {
     __extends(DependencyObservable, _super);
     function DependencyObservable() {

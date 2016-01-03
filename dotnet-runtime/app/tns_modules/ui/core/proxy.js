@@ -72,9 +72,7 @@ var ProxyObject = (function (_super) {
         if (this._updatingJSPropertiesDict[property.name]) {
             return;
         }
-        if (global.android && !this.android) {
-            return;
-        }
+
         var metadata = property.metadata;
         if (!(metadata instanceof PropertyMetadata)) {
             return;

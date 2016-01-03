@@ -32,8 +32,7 @@ namespace RaisingStudio.NativeScript
             "editable-text-base-common.js",
             "text-view-common.js",
             "text-view.js",
-            "text-base.js",
-            "enums.js"
+            "text-base.js"
         };
 #else
         public const bool DebugMode = false;
@@ -123,7 +122,7 @@ namespace RaisingStudio.NativeScript
 
         public object CreateModuleFunction(string moduleBody, string moduleUrl)
         {
-            var moduleFunctionBody = string.Format("(function (require, module, exports, dirName, path) {{ \n 'use strict'; {0} \n }});", moduleBody);
+            var moduleFunctionBody = string.Format("(function (require, module, exports, dirName, path) {{ 'use strict'; {0} \n }});", moduleBody);
             var moduleFunction = this.Execute(moduleFunctionBody, moduleUrl).GetCompletionValue();
             return moduleFunction;
         }

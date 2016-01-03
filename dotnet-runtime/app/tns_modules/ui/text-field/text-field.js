@@ -1,13 +1,8 @@
-var Perspex = importNamesapce("Perspex");
+var Perspex = importNamespace("Perspex");
 
 var common = require("ui/text-field/text-field-common");
 var textBase = require("ui/text-base");
 var enums = require("ui/enums");
-function onSecurePropertyChanged(data) {
-    var textField = data.object;
-    // TODO:
-}
-common.secureProperty.metadata.onSetNativeValue = onSecurePropertyChanged;
 require("utils/module-merge").merge(common, exports);
 
 var TextField = (function (_super) {
