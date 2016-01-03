@@ -18,6 +18,9 @@ var MainPage = (function (_super) {
             var buttonModule = require("ui/button");
             var btn = new buttonModule.Button();
             btn.text = "new button with text";
+            btn.on(buttonModule.Button.tapEvent, function (e) {
+                btn.text = "new button clicked.";
+            });
             button.Parent.Children.Add(btn.dotnet);
         });
     };

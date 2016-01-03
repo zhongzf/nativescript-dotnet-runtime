@@ -8,6 +8,9 @@ var Button = (function (_super) {
         var _this = this;
         _super.call(this);
         this._dotnet = new Perspex.Controls.Button();
+        this._dotnet.add_Click(function (sender, e) {
+            _this._emit(common.Button.tapEvent);
+        });
     }
     Object.defineProperty(Button.prototype, "dotnet", {
         get: function () {
