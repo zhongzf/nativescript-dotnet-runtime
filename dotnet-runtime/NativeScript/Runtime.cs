@@ -4,6 +4,7 @@ using Jint.Parser;
 using Jint.Runtime.Debugger;
 using Perspex.Controls;
 using Perspex.Markup.Xaml;
+using Perspex.Media;
 using RaisingStudio.Utils;
 using System;
 using System.Collections.Generic;
@@ -23,7 +24,16 @@ namespace RaisingStudio.NativeScript
         public static readonly string[] DebugFileList = new string[]
         {
             "button-common.js",
-            "button.js"
+            "button.js",
+            "text-base.js",
+            "text-field-common.js",
+            "text-field.js",
+            "editable-text-base.js",
+            "editable-text-base-common.js",
+            "text-view-common.js",
+            "text-view.js",
+            "text-base.js",
+            "enums.js"
         };
 #else
         public const bool DebugMode = false;
@@ -35,6 +45,7 @@ namespace RaisingStudio.NativeScript
                 .AllowClr(
                     typeof(Uri).Assembly,
                     typeof(Control).Assembly,
+                    typeof(Color).Assembly,
                     typeof(PerspexXamlLoader).Assembly,
                     typeof(Runtime).Assembly
                    )
@@ -42,7 +53,7 @@ namespace RaisingStudio.NativeScript
             )
         {
             if (DebugMode)
-            {
+            {                
                 this.Step += Runtime_Step;
             }
         }
