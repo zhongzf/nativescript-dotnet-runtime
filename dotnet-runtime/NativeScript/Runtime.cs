@@ -32,7 +32,9 @@ namespace RaisingStudio.NativeScript
             "editable-text-base-common.js",
             "text-view-common.js",
             "text-view.js",
-            "text-base.js"
+            "text-base.js",
+            "label-common.js",
+            "label.js"            
         };
 #else
         public const bool DebugMode = false;

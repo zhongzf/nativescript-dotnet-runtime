@@ -17,7 +17,7 @@ common.Label.textWrapProperty.metadata.onSetNativeValue = onTextWrapPropertyChan
 require("utils/module-merge").merge(common, exports);
 var Label = (function (_super) {
     __extends(Label, _super);
-    function Label() {
+    function Label(options) {
         _super.call(this, options);
         this._dotnet = new Perspex.Controls.TextBlock();
     }

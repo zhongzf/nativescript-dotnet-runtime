@@ -32,6 +32,12 @@ var MainPage = (function (_super) {
             var tw = new textViewModule.TextView();
             tw.text = "test text view."
             button.Parent.Children.Add(tw.dotnet);
+
+            var labelViewModule = require("ui/label");
+            var lb = new labelViewModule.Label();
+            lb.text = "test label..."
+            button.Parent.Children.Add(lb.dotnet);
+
         });
     };
     return MainPage;
