@@ -40,11 +40,15 @@ var MainPage = (function (_super) {
 
         });
 
-        var fs = require("file-system");
-        var fe = fs.File.exists("app/app.js");
-        log("fe: " + fe);
-        var de = fs.Folder.exists("app/tns_modules");
-        log("de: " + de);
+        //var fs = require("file-system");
+        //var fe = fs.File.exists("app/app.js");
+        //log("fe: " + fe);
+        //var de = fs.Folder.exists("app/tns_modules");
+        //log("de: " + de);
+
+        var pageModule = require("ui/page");
+        var page = new pageModule.Page();
+        watch(page);
     };
     return MainPage;
 })(windowModule.Window);

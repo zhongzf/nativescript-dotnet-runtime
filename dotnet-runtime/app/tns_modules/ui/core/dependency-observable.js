@@ -39,6 +39,7 @@ var PropertyMetadataSettings;
     PropertyMetadataSettings.AffectsStyle = 1 << 1;
     PropertyMetadataSettings.Inheritable = 1 << 2;
 })(PropertyMetadataSettings = exports.PropertyMetadataSettings || (exports.PropertyMetadataSettings = {}));
+
 var ValueSource;
 (function (ValueSource) {
     ValueSource.Default = 0;
@@ -137,7 +138,8 @@ var Property = (function () {
         this._metadata = metadata;
 
         if (!metadata.options) {
-            metadata.options = PropertyMetadataSettings.None;
+            // TODO:
+            // metadata.options = PropertyMetadataSettings.None;
         }
         this._id = propertyIdCounter++;
         this._valueConverter = valueConverter;

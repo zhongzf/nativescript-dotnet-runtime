@@ -2,7 +2,7 @@ var trace = require("trace");
 var cssSelector = require("ui/styling/css-selector");
 var cssParser = require("js-libs/reworkcss");
 var visual_state_1 = require("ui/styling/visual-state");
-var application = require("application");
+//var application = require("application");
 var utils = require("utils/utils");
 var types = require("utils/types");
 var fs = require("file-system");
@@ -32,12 +32,12 @@ var StyleScope = (function () {
         this._cssFileName = cssFileName;
         this._reset();
         if (!this._cssSelectors) {
-            if (application.cssSelectorsCache) {
-                this._cssSelectors = StyleScope._joinCssSelectorsArrays([application.cssSelectorsCache]);
-            }
-            else {
+            //if (application.cssSelectorsCache) {
+            //    this._cssSelectors = StyleScope._joinCssSelectorsArrays([application.cssSelectorsCache]);
+            //}
+            //else {
                 this._cssSelectors = new Array();
-            }
+            //}
         }
         var selectorsFromFile = StyleScope.createSelectorsFromCss(cssString, cssFileName);
         this._cssSelectors = StyleScope._joinCssSelectorsArrays([this._cssSelectors, selectorsFromFile]);
@@ -80,11 +80,11 @@ var StyleScope = (function () {
         return selectors;
     };
     StyleScope.prototype.ensureSelectors = function () {
-        if (!this._cssSelectors && (this._css || application.cssSelectorsCache)) {
-            var applicationCssSelectors = application.cssSelectorsCache ? application.cssSelectorsCache : null;
-            var pageCssSelectors = StyleScope.createSelectorsFromCss(this._css, this._cssFileName);
-            this._cssSelectors = StyleScope._joinCssSelectorsArrays([applicationCssSelectors, pageCssSelectors]);
-        }
+        //if (!this._cssSelectors && (this._css || application.cssSelectorsCache)) {
+        //    var applicationCssSelectors = application.cssSelectorsCache ? application.cssSelectorsCache : null;
+        //    var pageCssSelectors = StyleScope.createSelectorsFromCss(this._css, this._cssFileName);
+        //    this._cssSelectors = StyleScope._joinCssSelectorsArrays([applicationCssSelectors, pageCssSelectors]);
+        //}
     };
     StyleScope._joinCssSelectorsArrays = function (arrays) {
         var mergedResult = [];

@@ -3,6 +3,9 @@ var RaisingStudio = importNamespace("RaisingStudio");
 var windowModule = require("ui/window");
 var dependencyObservable = require("ui/core/dependency-observable");
 
+//var appModule = require("application/application-common");
+//require("utils/module-merge").merge(appModule, exports);
+
 exports.resources = undefined;
 
 var Application = (function (_super) {

@@ -1,9 +1,3 @@
-var __extends = this.__extends || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    __.prototype = b.prototype;
-    d.prototype = new __();
-};
 var observable = require("ui/core/dependency-observable");
 var color = require("color");
 var types = require("utils/types");
@@ -13,7 +7,7 @@ var stylers = require("ui/styling/stylers");
 var styleProperty = require("ui/styling/style-property");
 var converters = require("ui/styling/converters");
 var enums = require("ui/enums");
-var imageSource = require("image-source");
+//var imageSource = require("image-source");
 var utils = require("utils/utils");
 var font = require("ui/styling/font");
 var background = require("ui/styling/background");
@@ -535,22 +529,22 @@ function onBackgroundImagePropertyChanged(data) {
         if (utils.isDataURI(url)) {
             var base64Data = url.split(",")[1];
             if (types.isDefined(base64Data)) {
-                style._setValue(exports.backgroundInternalProperty, currentBackground.withImage(imageSource.fromBase64(base64Data)));
+                //style._setValue(exports.backgroundInternalProperty, currentBackground.withImage(imageSource.fromBase64(base64Data)));
                 isValid = true;
             }
         }
         else if (utils.isFileOrResourcePath(url)) {
-            style._setValue(exports.backgroundInternalProperty, currentBackground.withImage(imageSource.fromFileOrResource(url)));
+            //style._setValue(exports.backgroundInternalProperty, currentBackground.withImage(imageSource.fromFileOrResource(url)));
             isValid = true;
         }
         else if (url.indexOf("http") !== -1) {
             style["_url"] = url;
             style._setValue(exports.backgroundInternalProperty, currentBackground.withImage(undefined));
-            imageSource.fromUrl(url).then(function (r) {
-                if (style && style["_url"] === url) {
-                    style._setValue(exports.backgroundInternalProperty, currentBackground.withImage(r));
-                }
-            });
+            //imageSource.fromUrl(url).then(function (r) {
+            //    if (style && style["_url"] === url) {
+            //        style._setValue(exports.backgroundInternalProperty, currentBackground.withImage(r));
+            //    }
+            //});
             isValid = true;
         }
     }

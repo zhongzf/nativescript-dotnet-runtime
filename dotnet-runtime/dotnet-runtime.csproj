@@ -175,6 +175,9 @@
     <Content Include="app\main-page.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="app\tns_modules\application\application-common.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="app\tns_modules\color\color-common.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -217,6 +220,9 @@
     <Content Include="app\tns_modules\js-libs\reworkcss\reworkcss.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="app\tns_modules\platform\platform.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="app\tns_modules\text\formatted-string-common.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -239,6 +245,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="app\tns_modules\ui\builder\binding-builder.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="app\tns_modules\ui\builder\builder.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="app\tns_modules\ui\builder\component-builder.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="app\tns_modules\ui\builder\template-builder.js">
@@ -283,10 +295,13 @@
     <Content Include="app\tns_modules\ui\frame\frame-common.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="app\tns_modules\ui\frame\frame.android.js">
+    <Content Include="app\tns_modules\ui\frame\frame.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="app\tns_modules\ui\frame\frame.ios.js">
+    <Content Include="app\tns_modules\ui\gestures\gestures-common.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="app\tns_modules\ui\gestures\gestures.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="app\tns_modules\ui\label\label-common.js">
@@ -316,19 +331,13 @@
     <Content Include="app\tns_modules\ui\page\page-common.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="app\tns_modules\ui\page\page.android.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="app\tns_modules\ui\page\page.ios.js">
+    <Content Include="app\tns_modules\ui\page\page.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="app\tns_modules\ui\styling\background-common.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="app\tns_modules\ui\styling\background.android.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="app\tns_modules\ui\styling\background.ios.js">
+    <Content Include="app\tns_modules\ui\styling\background.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="app\tns_modules\ui\styling\converters.js">
@@ -340,10 +349,7 @@
     <Content Include="app\tns_modules\ui\styling\font-common.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="app\tns_modules\ui\styling\font.android.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="app\tns_modules\ui\styling\font.ios.js">
+    <Content Include="app\tns_modules\ui\styling\font.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="app\tns_modules\ui\styling\style-property.js">
@@ -358,10 +364,7 @@
     <Content Include="app\tns_modules\ui\styling\stylers-common.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="app\tns_modules\ui\styling\stylers.android.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="app\tns_modules\ui\styling\stylers.ios.js">
+    <Content Include="app\tns_modules\ui\styling\stylers.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="app\tns_modules\ui\styling\styling.js">
@@ -406,6 +409,9 @@
     <Content Include="app\tns_modules\utils\utils.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="app\tns_modules\xml\xml.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <EmbeddedResource Include="NativeScript\es6-shim.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
@@ -436,6 +442,9 @@
     <None Include="app\tns_modules\js-libs\reworkcss\package.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="app\tns_modules\platform\package.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="app\tns_modules\text\package.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -443,6 +452,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="app\tns_modules\ui\border\package.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="app\tns_modules\ui\builder\package.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="app\tns_modules\ui\button\package.json">
@@ -458,6 +470,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="app\tns_modules\ui\frame\package.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="app\tns_modules\ui\gestures\package.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="app\tns_modules\ui\label\package.json">
@@ -491,6 +506,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="app\tns_modules\ui\text-view\package.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="app\tns_modules\xml\package.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />

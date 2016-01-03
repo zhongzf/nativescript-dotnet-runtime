@@ -9,7 +9,7 @@ var DefaultStyler = (function () {
     DefaultStyler.setBackgroundInternalProperty = function (view, newValue) {
         var nativeView = view._nativeView;
         if (nativeView) {
-            nativeView.backgroundColor = background.ios.createBackgroundUIColor(view);
+            //nativeView.backgroundColor = background.ios.createBackgroundUIColor(view);
         }
     };
     DefaultStyler.resetBackgroundInternalProperty = function (view, nativeValue) {
@@ -113,55 +113,55 @@ var ButtonStyler = (function () {
     }
     ButtonStyler.setColorProperty = function (view, newValue) {
         var btn = view._nativeView;
-        btn.setTitleColorForState(newValue, UIControlState.UIControlStateNormal);
+        //btn.setTitleColorForState(newValue, UIControlState.UIControlStateNormal);
     };
     ButtonStyler.resetColorProperty = function (view, nativeValue) {
         var btn = view._nativeView;
-        btn.setTitleColorForState(nativeValue, UIControlState.UIControlStateNormal);
+        //btn.setTitleColorForState(nativeValue, UIControlState.UIControlStateNormal);
     };
     ButtonStyler.getNativeColorValue = function (view) {
         var btn = view._nativeView;
-        return btn.titleColorForState(UIControlState.UIControlStateNormal);
+        return undefined; //btn.titleColorForState(UIControlState.UIControlStateNormal);
     };
     ButtonStyler.setFontInternalProperty = function (view, newValue, nativeValue) {
         var btn = view._nativeView;
-        btn.titleLabel.font = newValue.getUIFont(nativeValue);
+        //btn.titleLabel.font = newValue.getUIFont(nativeValue);
     };
     ButtonStyler.resetFontInternalProperty = function (view, nativeValue) {
         var btn = view._nativeView;
-        btn.titleLabel.font = nativeValue;
+        //btn.titleLabel.font = nativeValue;
     };
     ButtonStyler.getNativeFontInternalValue = function (view) {
         var btn = view._nativeView;
-        return btn.titleLabel.font;
+        return undefined;// btn.titleLabel.font;
     };
     ButtonStyler.setTextAlignmentProperty = function (view, newValue) {
         var btn = view._nativeView;
         setTextAlignment(btn.titleLabel, newValue);
-        switch (newValue) {
-            case enums.TextAlignment.left:
-                btn.contentHorizontalAlignment = UIControlContentHorizontalAlignment.UIControlContentHorizontalAlignmentLeft;
-                break;
-            case enums.TextAlignment.center:
-                btn.contentHorizontalAlignment = UIControlContentHorizontalAlignment.UIControlContentHorizontalAlignmentCenter;
-                break;
-            case enums.TextAlignment.right:
-                btn.contentHorizontalAlignment = UIControlContentHorizontalAlignment.UIControlContentHorizontalAlignmentRight;
-                break;
-            default:
-                break;
-        }
+        //switch (newValue) {
+        //    case enums.TextAlignment.left:
+        //        btn.contentHorizontalAlignment = UIControlContentHorizontalAlignment.UIControlContentHorizontalAlignmentLeft;
+        //        break;
+        //    case enums.TextAlignment.center:
+        //        btn.contentHorizontalAlignment = UIControlContentHorizontalAlignment.UIControlContentHorizontalAlignmentCenter;
+        //        break;
+        //    case enums.TextAlignment.right:
+        //        btn.contentHorizontalAlignment = UIControlContentHorizontalAlignment.UIControlContentHorizontalAlignmentRight;
+        //        break;
+        //    default:
+        //        break;
+        //}
     };
     ButtonStyler.resetTextAlignmentProperty = function (view, nativeValue) {
         var btn = view._nativeView;
-        btn.titleLabel.textAlignment = nativeValue.textAlign;
-        btn.contentHorizontalAlignment = nativeValue.contentAlign;
+        //btn.titleLabel.textAlignment = nativeValue.textAlign;
+        //btn.contentHorizontalAlignment = nativeValue.contentAlign;
     };
     ButtonStyler.getNativeTextAlignmentValue = function (view) {
         var btn = view._nativeView;
         return {
-            textAlign: btn.titleLabel.textAlignment,
-            contentAlign: btn.contentHorizontalAlignment
+            //textAlign: btn.titleLabel.textAlignment,
+            //contentAlign: btn.contentHorizontalAlignment
         };
     };
     ButtonStyler.registerHandlers = function () {
@@ -176,39 +176,39 @@ var TextBaseStyler = (function () {
     function TextBaseStyler() {
     }
     TextBaseStyler.setFontInternalProperty = function (view, newValue, nativeValue) {
-        var ios = view._nativeView;
-        ios.font = newValue.getUIFont(nativeValue);
+        //var ios = view._nativeView;
+        //ios.font = newValue.getUIFont(nativeValue);
     };
     TextBaseStyler.resetFontInternalProperty = function (view, nativeValue) {
-        var ios = view._nativeView;
-        ios.font = nativeValue;
+        //var ios = view._nativeView;
+        //ios.font = nativeValue;
     };
     TextBaseStyler.getNativeFontInternalValue = function (view) {
-        var ios = view._nativeView;
-        return ios.font;
+        //var ios = view._nativeView;
+        //return ios.font;
     };
     TextBaseStyler.setTextAlignmentProperty = function (view, newValue) {
-        setTextAlignment(view._nativeView, newValue);
+        //setTextAlignment(view._nativeView, newValue);
     };
     TextBaseStyler.resetTextAlignmentProperty = function (view, nativeValue) {
-        var ios = view._nativeView;
-        ios.textAlignment = nativeValue;
+        //var ios = view._nativeView;
+        //ios.textAlignment = nativeValue;
     };
     TextBaseStyler.getNativeTextAlignmentValue = function (view) {
-        var ios = view._nativeView;
-        return ios.textAlignment;
+        //var ios = view._nativeView;
+        //return ios.textAlignment;
     };
     TextBaseStyler.setColorProperty = function (view, newValue) {
-        var ios = view._nativeView;
-        ios.textColor = newValue;
+        //var ios = view._nativeView;
+        //ios.textColor = newValue;
     };
     TextBaseStyler.resetColorProperty = function (view, nativeValue) {
-        var ios = view._nativeView;
-        ios.textColor = nativeValue;
+        //var ios = view._nativeView;
+        //ios.textColor = nativeValue;
     };
     TextBaseStyler.getNativeColorValue = function (view) {
-        var ios = view._nativeView;
-        return ios.textColor;
+        //var ios = view._nativeView;
+        //return ios.textColor;
     };
     TextBaseStyler.registerHandlers = function () {
         style.registerHandler(style.fontInternalProperty, new stylersCommon.StylePropertyChangedHandler(TextBaseStyler.setFontInternalProperty, TextBaseStyler.resetFontInternalProperty, TextBaseStyler.getNativeFontInternalValue), "TextBase");
@@ -257,16 +257,16 @@ var SegmentedBarStyler = (function () {
     function SegmentedBarStyler() {
     }
     SegmentedBarStyler.setColorProperty = function (view, newValue) {
-        var bar = view.ios;
-        var attrs = NSMutableDictionary.new();
-        attrs.setValueForKey(newValue, NSForegroundColorAttributeName);
-        bar.setTitleTextAttributesForState(attrs, UIControlState.UIControlStateNormal);
+        //var bar = view.ios;
+        //var attrs = NSMutableDictionary.new();
+        //attrs.setValueForKey(newValue, NSForegroundColorAttributeName);
+        //bar.setTitleTextAttributesForState(attrs, UIControlState.UIControlStateNormal);
     };
     SegmentedBarStyler.resetColorProperty = function (view, nativeValue) {
-        var bar = view.ios;
-        var attrs = NSMutableDictionary.new();
-        attrs.setValueForKey(nativeValue, NSForegroundColorAttributeName);
-        bar.setTitleTextAttributesForState(attrs, UIControlState.UIControlStateNormal);
+        //var bar = view.ios;
+        //var attrs = NSMutableDictionary.new();
+        //attrs.setValueForKey(nativeValue, NSForegroundColorAttributeName);
+        //bar.setTitleTextAttributesForState(attrs, UIControlState.UIControlStateNormal);
     };
     SegmentedBarStyler.registerHandlers = function () {
         style.registerHandler(style.colorProperty, new stylersCommon.StylePropertyChangedHandler(SegmentedBarStyler.setColorProperty, SegmentedBarStyler.resetColorProperty), "SegmentedBar");
@@ -278,38 +278,38 @@ var SearchBarStyler = (function () {
     function SearchBarStyler() {
     }
     SearchBarStyler.setBackgroundColorProperty = function (view, newValue) {
-        var bar = view.ios;
-        bar.barTintColor = newValue;
+        //var bar = view.ios;
+        //bar.barTintColor = newValue;
     };
     SearchBarStyler.getBackgroundColorProperty = function (view) {
-        var bar = view.ios;
-        return bar.barTintColor;
+        //var bar = view.ios;
+        //return bar.barTintColor;
     };
     SearchBarStyler.resetBackgroundColorProperty = function (view, nativeValue) {
-        var bar = view.ios;
-        bar.barTintColor = nativeValue;
+        //var bar = view.ios;
+        //bar.barTintColor = nativeValue;
     };
     SearchBarStyler.getColorProperty = function (view) {
-        var bar = view.ios;
-        var sf = bar.valueForKey("_searchField");
-        if (sf) {
-            return sf.textColor;
-        }
+        //var bar = view.ios;
+        //var sf = bar.valueForKey("_searchField");
+        //if (sf) {
+        //    return sf.textColor;
+        //}
         return undefined;
     };
     SearchBarStyler.setColorProperty = function (view, newValue) {
-        var bar = view.ios;
-        var sf = bar.valueForKey("_searchField");
-        if (sf) {
-            sf.textColor = newValue;
-        }
+        //var bar = view.ios;
+        //var sf = bar.valueForKey("_searchField");
+        //if (sf) {
+        //    sf.textColor = newValue;
+        //}
     };
     SearchBarStyler.resetColorProperty = function (view, nativeValue) {
-        var bar = view.ios;
-        var sf = bar.valueForKey("_searchField");
-        if (sf) {
-            sf.textColor = nativeValue;
-        }
+        //var bar = view.ios;
+        //var sf = bar.valueForKey("_searchField");
+        //if (sf) {
+        //    sf.textColor = nativeValue;
+        //}
     };
     SearchBarStyler.registerHandlers = function () {
         style.registerHandler(style.backgroundColorProperty, new stylersCommon.StylePropertyChangedHandler(SearchBarStyler.setBackgroundColorProperty, SearchBarStyler.resetBackgroundColorProperty, SearchBarStyler.getBackgroundColorProperty), "SearchBar");

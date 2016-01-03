@@ -1,4 +1,4 @@
-var application = require("application");
+//var application = require("application");
 var types = require("utils/types");
 var _defaultNativeValuesCache = {};
 var StylePropertyChangedHandler = (function () {
@@ -12,12 +12,13 @@ var StylePropertyChangedHandler = (function () {
         if (!_defaultNativeValuesCache.hasOwnProperty(className + property.id) && this._getNativeValue) {
             _defaultNativeValuesCache[className + property.id] = this._getNativeValue(view);
         }
-        if (application.android) {
-            newValue = newValue.android ? newValue.android : newValue;
-        }
-        else if (application.ios) {
-            newValue = newValue.ios ? newValue.ios : newValue;
-        }
+        //if (application.android) {
+        //    newValue = newValue.android ? newValue.android : newValue;
+        //}
+        //else if (application.ios) {
+        //    newValue = newValue.ios ? newValue.ios : newValue;
+        //}
+        // TODO:
         this._applyProperty(view, newValue, _defaultNativeValuesCache[className + property.id]);
     };
     StylePropertyChangedHandler.prototype.resetProperty = function (property, view) {

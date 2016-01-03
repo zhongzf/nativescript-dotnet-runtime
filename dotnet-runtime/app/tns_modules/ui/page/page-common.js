@@ -4,7 +4,7 @@ var styleScope = require("ui/styling/style-scope");
 var fs = require("file-system");
 var fileSystemAccess = require("file-system/file-system-access");
 var frameCommon = require("ui/frame/frame-common");
-var actionBar = require("ui/action-bar");
+//var actionBar = require("ui/action-bar");
 var dependencyObservable = require("ui/core/dependency-observable");
 var proxy = require("ui/core/proxy");
 var actionBarHiddenProperty = new dependencyObservable.Property("actionBarHidden", "Page", new proxy.PropertyMetadata(undefined, dependencyObservable.PropertyMetadataSettings.AffectsLayout));
@@ -19,9 +19,10 @@ var Page = (function (_super) {
     __extends(Page, _super);
     function Page(options) {
         _super.call(this, options);
-        this._styleScope = new styleScope.StyleScope();
+        this._styleScope = {};//new styleScope.StyleScope();
         this._cssFiles = {};
-        this.actionBar = new actionBar.ActionBar();
+        // TODO:
+        this.actionBar = {}; //new actionBar.ActionBar();
     }
     Page.prototype.onLoaded = function () {
         this._applyCss();
@@ -51,13 +52,13 @@ var Page = (function (_super) {
     });
     Object.defineProperty(Page.prototype, "css", {
         get: function () {
-            if (this._styleScope) {
-                return this._styleScope.css;
-            }
+            //if (this._styleScope) {
+            //    return this._styleScope.css;
+            //}
             return undefined;
         },
         set: function (value) {
-            this._styleScope.css = value;
+            //this._styleScope.css = value;
             this._refreshCss();
         },
         enumerable: true,
@@ -97,7 +98,7 @@ var Page = (function (_super) {
         this._addCssInternal(cssString, undefined);
     };
     Page.prototype._addCssInternal = function (cssString, cssFileName) {
-        this._styleScope.addCss(cssString, cssFileName);
+        //this._styleScope.addCss(cssString, cssFileName);
         this._refreshCss();
     };
     Page.prototype.addCssFile = function (cssFileName) {
@@ -191,10 +192,10 @@ var Page = (function (_super) {
         if (this._cssApplied) {
             return;
         }
-        this._styleScope.ensureSelectors();
-        var scope = this._styleScope;
+        //this._styleScope.ensureSelectors();
+        //var scope = this._styleScope;
         var checkSelectors = function (view) {
-            scope.applySelectors(view);
+            //scope.applySelectors(view);
             return true;
         };
         checkSelectors(this);
