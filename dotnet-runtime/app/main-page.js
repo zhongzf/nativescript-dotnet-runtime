@@ -39,6 +39,12 @@ var MainPage = (function (_super) {
             button.Parent.Children.Add(lb.dotnet);
 
         });
+
+        var fs = require("file-system");
+        var fe = fs.File.exists("app/app.js");
+        log("fe: " + fe);
+        var de = fs.Folder.exists("app/tns_modules");
+        log("de: " + de);
     };
     return MainPage;
 })(windowModule.Window);

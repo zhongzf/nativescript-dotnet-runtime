@@ -34,7 +34,15 @@ namespace RaisingStudio.NativeScript
             "text-view.js",
             "text-base.js",
             "label-common.js",
-            "label.js"            
+            "label.js",
+            "file-name-resolver.js",
+            "file-system.js",
+            "file-system-access.js",
+            "text.js",
+            "formatted-string-common.js",
+            "formatted-string.js",
+            "span-common.js",
+            "span.js"
         };
 #else
         public const bool DebugMode = false;
@@ -44,6 +52,7 @@ namespace RaisingStudio.NativeScript
         private Runtime()
             : base(cfg => cfg
                 .AllowClr(
+                    typeof(Enumerable).Assembly,
                     typeof(Uri).Assembly,
                     typeof(Control).Assembly,
                     typeof(Color).Assembly,
@@ -54,7 +63,7 @@ namespace RaisingStudio.NativeScript
             )
         {
             if (DebugMode)
-            {                
+            {
                 this.Step += Runtime_Step;
             }
         }
