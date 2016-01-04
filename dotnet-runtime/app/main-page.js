@@ -47,6 +47,7 @@ var MainPage = (function (_super) {
         //log("de: " + de);
 
         var pageModule = require("ui/page");
+        watch(pageModule);
         var page = new pageModule.Page();
         watch(page);
     };

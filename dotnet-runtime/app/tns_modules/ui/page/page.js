@@ -6,8 +6,13 @@ require("utils/module-merge").merge(pageCommon, exports);
 var Page = (function (_super) {
     __extends(Page, _super);
     function Page(options) {
-        _super.call(this, options);
-        this._isBackNavigation = false;
+        watch(_super);
+
+        // why "System.StackOverflowException"?
+        //_super.call(this, options);
+        //_super.apply(this, arguments);
+
+        //this._isBackNavigation = false;
     }
     Page.prototype._onDetached = function (force) {
         //var skipDetached = !force && this.frame.android.cachePagesOnNavigate && !this._isBackNavigation;

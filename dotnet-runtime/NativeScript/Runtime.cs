@@ -67,10 +67,10 @@ namespace RaisingStudio.NativeScript
             //"layout.js",
             //"gestures-common.js",
             //"gestures.js",
-            //"builder.js",
-            //"component-builder.js",
-            //"frame-common.js",
-            //"frame.js",            
+            "builder.js",
+            "component-builder.js",
+            "frame-common.js",
+            "frame.js",            
             "page-common.js",
             "page.js"
         };
@@ -161,11 +161,21 @@ namespace RaisingStudio.NativeScript
             Console.WriteLine(value);
         }
 
+        private Dictionary<string, object> ModuleFunctionCache = new Dictionary<string, object>();
+
         public object CreateModuleFunction(string moduleBody, string moduleUrl)
         {
-            var moduleFunctionBody = string.Format("(function (require, module, exports, dirName, path) {{ 'use strict'; {0} \n }});", moduleBody);
-            var moduleFunction = this.Execute(moduleFunctionBody, moduleUrl).GetCompletionValue();
-            return moduleFunction;
+            if (ModuleFunctionCache.ContainsKey(moduleUrl))
+            {
+                return ModuleFunctionCache[moduleUrl];
+            }
+            else
+            {
+                var moduleFunctionBody = string.Format("(function (require, module, exports, dirName, path) {{ 'use strict'; {0} \n }});", moduleBody);
+                var moduleFunction = this.Execute(moduleFunctionBody, moduleUrl).GetCompletionValue();
+                ModuleFunctionCache[moduleUrl] = moduleFunction;
+                return moduleFunction;
+            }
         }
 
         public void ExecuteModule(string entryPointModuleIdentifier)
