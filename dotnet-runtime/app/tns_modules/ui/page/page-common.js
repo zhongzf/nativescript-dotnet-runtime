@@ -18,10 +18,8 @@ actionBarHiddenProperty.metadata.onSetNativeValue = onActionBarHiddenPropertyCha
 var Page = (function (_super) {
     __extends(Page, _super);
     function Page(options) {
-
-        watch(_super);
-
         _super.call(this, options);
+
         this._styleScope = {};//new styleScope.StyleScope();
         this._cssFiles = {};
         // TODO:

@@ -6,11 +6,8 @@ require("utils/module-merge").merge(pageCommon, exports);
 var Page = (function (_super) {
     __extends(Page, _super);
     function Page(options) {
-        watch(_super);
-
         // why "System.StackOverflowException"?
         //_super.call(this, options);
-        //_super.apply(this, arguments);
 
         //this._isBackNavigation = false;
     }

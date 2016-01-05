@@ -13,6 +13,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
 
 namespace RaisingStudio.NativeScript
 {
@@ -72,7 +73,8 @@ namespace RaisingStudio.NativeScript
             "frame-common.js",
             "frame.js",            
             "page-common.js",
-            "page.js"
+            "page.js",
+            "timer.js"
         };
 #else
         public const bool DebugMode = false;
@@ -137,7 +139,7 @@ namespace RaisingStudio.NativeScript
             this.applicationPath = applicationPath;
 
             this.SetValue("global", base.Global);
-            this.SetValue("this", base.Global);
+            //this.SetValue("this", base.Global);
 
             this.SetValue("log", new Action<string>(this.WriteLog));
             this.SetValue("watch", new Action<object>(this.Watch));

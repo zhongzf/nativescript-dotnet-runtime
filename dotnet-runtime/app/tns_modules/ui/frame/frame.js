@@ -10,7 +10,7 @@ var navDepth = 0;
 var Frame = (function (_super) {
     __extends(Frame, _super);
     function Frame() {
-        _super.call(this);
+        //_super.call(this);
         this._shouldSkipNativePop = false;
         // TODO:
         this._dotnet = undefined; // new iOSFrame(this);
