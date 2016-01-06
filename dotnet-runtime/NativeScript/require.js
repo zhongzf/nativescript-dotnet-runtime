@@ -3,9 +3,18 @@
  *
  * You can ignore this file and continue debugging.
  */
+var global = {};
 
-(function (applicationPath, createModuleFunction) {
+((function (applicationPath/*, createModuleFunction*/) {
     'use strict';
+
+    var clr = xHost.lib('mscorlib', 'System', 'System.Core');
+    var System = clr.System;
+
+    function createModuleFunction(moduleBody, moduleUrl) {
+        var functionBody = "(function (require, module, exports, dirName, path) {{ 'use strict'; " + moduleBody + " \n }});";
+        return eval(functionBody);
+    }
 
     String.prototype.template = function (data) {
         return this.replace(/\${(.*?)}/g, function (_, code) {
@@ -31,10 +40,11 @@
     };
 
     String.prototype.stringByAppendingPathComponent = function (value) {
-        return System.IO.Path.Combine(this, value);
+        var Path = clr.System.IO.Path.Combine;
+        return Path(this, value);
     };
 
-    
+
     var fileManager = {
         fix: function (path) {
             return System.String.IsNullOrEmpty(path)
@@ -67,7 +77,7 @@
                 if (p5) value += p5.toString();
                 if (p6) value += p6.toString();
                 this.log(value);
-            }            
+            }
         }
     };
 
@@ -75,8 +85,9 @@
     var CORE_MODULES_ROOT = 'app/tns_modules';
 
     var isDirectory = { value: false };
-    var defaultPreviousPath = System.IO.Path.Combine(USER_MODULES_ROOT, 'index.js');
-    
+    var Combine = clr.System.IO.Path.Combine;
+    var defaultPreviousPath = Combine(USER_MODULES_ROOT, 'index.js');
+
     var pathCache = new Map();
     var modulesCache = new Map();
 
@@ -102,7 +113,7 @@
         }
         var absolutePath;
         if (/^\.{1,2}\//.test(moduleIdentifier)) { // moduleIdentifier starts with ./ or ../
-            var moduleDir =  previousPath.stringByDeletingLastPathComponent();
+            var moduleDir = previousPath.stringByDeletingLastPathComponent();
             absolutePath = System.IO.Path.Combine(applicationPath, moduleDir, moduleIdentifier);
         } else if (/^\//.test(moduleIdentifier)) { // moduleIdentifier starts with /
             absolutePath = moduleIdentifier;
@@ -146,7 +157,7 @@
                     try {
                         packageJsonMain = JSON.parse(packageJson).main;
                     } catch (e) {
-                        throw new Error('Error parsing package.json in file:///${getRelativeToBundlePath(absolutePath)}/package.json - ${e}'.template({getRelativeToBundlePath:getRelativeToBundlePath, absolutePath: absolutePath}));
+                        throw new Error('Error parsing package.json in file:///${getRelativeToBundlePath(absolutePath)}/package.json - ${e}'.template({ getRelativeToBundlePath: getRelativeToBundlePath, absolutePath: absolutePath }));
                     }
 
                     if (packageJsonMain && !/\.js$/.test(packageJsonMain)) {
@@ -165,11 +176,11 @@
         var bundlePath = getRelativeToBundlePath(absolutePath);
 
         if (!fileManager.fileExistsAtPathIsDirectory(absolutePath, isDirectory)) {
-            throw new Error('Failed to find module ${moduleIdentifier} relative to file:///${previousPath}. Computed path: ${bundlePath}.'.template({moduleIdentifier: moduleIdentifier, previousPath: previousPath, bundlePath: bundlePath}));
+            throw new Error('Failed to find module ${moduleIdentifier} relative to file:///${previousPath}. Computed path: ${bundlePath}.'.template({ moduleIdentifier: moduleIdentifier, previousPath: previousPath, bundlePath: bundlePath }));
         }
 
         if (isDirectory.value) {
-            throw new Error('Expected ${bundlePath} to be a file'.template({bundlePath: bundlePath}));
+            throw new Error('Expected ${bundlePath} to be a file'.template({ bundlePath: bundlePath }));
         }
 
         console.debug('FIND_MODULE:', moduleIdentifier, absolutePath);
@@ -209,7 +220,7 @@
                 module.exports = JSON.parse(moduleSource);
                 hadError = false;
             } catch (e) {
-                e.message = 'File: file:///${moduleMetadata.bundlePath}. ${e.message}'.template({moduleMetadata:moduleMetadata, e:e});
+                e.message = 'File: file:///${moduleMetadata.bundlePath}. ${e.message}'.template({ moduleMetadata: moduleMetadata, e: e });
                 throw e;
             } finally {
                 if (hadError) {
@@ -217,7 +228,7 @@
                 }
             }
         } else {
-            throw new Error('Unknown module type ${moduleMetadata.type}'.template({moduleMetadata:moduleMetadata}));
+            throw new Error('Unknown module type ${moduleMetadata.type}'.template({ moduleMetadata: moduleMetadata }));
         }
     }
 
@@ -253,4 +264,4 @@
     };
 
     return __loadModule;
-});
+})('C:\\Users\\johnson\\Documents\\GitHub\\nativescript-dotnet-runtime\\dotnet-runtime\\bin\\Debug\\app'))('.\\');

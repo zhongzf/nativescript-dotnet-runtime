@@ -1,7 +1,7 @@
 /**
  * Android specific http request implementation.
  */
-var imageSource = require("image-source");
+//var imageSource = require("image-source");
 var types = require("utils/types");
 var platform = require("platform");
 var requestIdCounter = 0;
@@ -33,7 +33,7 @@ function onRequestComplete(requestId, result) {
         content: {
             raw: result.raw,
             toString: function () { return result.responseAsString; },
-            toJSON: function () { return JSON.parse(result.responseAsString); },
+            toJSON: function () { return JSON.parse(result.responseAsString); }/*,
             toImage: function () {
                 return new Promise(function (resolveImage, rejectImage) {
                     if (result.responseAsImage != null) {
@@ -43,39 +43,38 @@ function onRequestComplete(requestId, result) {
                         rejectImage(new Error("Response content may not be converted to an Image"));
                     }
                 });
-            }
+            }*/
         },
         statusCode: result.statusCode,
         headers: headers
     });
 }
-function buildJavaOptions(options) {
+function buildWebRequestOptions(options) {
     if (!types.isString(options.url)) {
         throw new Error("Http request must provide a valid url.");
     }
-    var javaOptions = new com.tns.Async.Http.RequestOptions();
-    javaOptions.url = options.url;
+    var webRequestOptions = {};
+    webRequestOptions.url = options.url;
     if (types.isString(options.method)) {
-        javaOptions.method = options.method;
+        webRequestOptions.method = options.method;
     }
     if (options.content) {
-        javaOptions.content = options.content;
+        webRequestOptions.content = options.content;
     }
     if (types.isNumber(options.timeout)) {
-        javaOptions.timeout = options.timeout;
+        webRequestOptions.timeout = options.timeout;
     }
     if (options.headers) {
-        var arrayList = new java.util.ArrayList();
-        var pair = com.tns.Async.Http.KeyValuePair;
+        var webHeaderCollection = new System.Net.WebHeaderCollection();
         for (var key in options.headers) {
-            arrayList.add(new pair(key, options.headers[key] + ""));
+            webHeaderCollection.add(key, options.headers[key] + "");
         }
-        javaOptions.headers = arrayList;
+        webRequestOptions.headers = webHeaderCollection;
     }
-    var screen = platform.screen.mainScreen;
-    javaOptions.screenWidth = screen.widthPixels;
-    javaOptions.screenHeight = screen.heightPixels;
-    return javaOptions;
+    //var screen = platform.screen.mainScreen;
+    //webRequestOptions.screenWidth = screen.widthPixels;
+    //webRequestOptions.screenHeight = screen.heightPixels;
+    return webRequestOptions;
 }
 function request(options) {
     if (!types.isDefined(options)) {
@@ -83,13 +82,19 @@ function request(options) {
     }
     return new Promise(function (resolve, reject) {
         try {
-            var javaOptions = buildJavaOptions(options);
+            var webRequestOptions = buildWebRequestOptions(options);
             var callbacks = {
                 resolveCallback: resolve,
                 rejectCallback: reject
             };
             pendingRequests[requestIdCounter] = callbacks;
-            com.tns.Async.Http.MakeRequest(javaOptions, completeCallback, new java.lang.Integer(requestIdCounter));
+            var request = System.Net.WebRequest.CreateHttp(webRequestOptions.url);
+            request.Headers = webRequestOptions.headers;
+            request.Timeout = webRequestOptions.timeout;
+            request.ContentType = webRequestOptions.content;
+            // TODO:
+            var response = request.GetResponseAsync();
+            //com.tns.Async.Http.MakeRequest(javaOptions, completeCallback, new java.lang.Integer(requestIdCounter));
             requestIdCounter++;
         }
         catch (ex) {
