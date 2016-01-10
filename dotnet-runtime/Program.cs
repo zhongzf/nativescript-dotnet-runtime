@@ -16,6 +16,10 @@ namespace RaisingStudio
         {
             Runtime.Instance.Init(AppDomain.CurrentDomain.BaseDirectory);
             Runtime.Instance.ExecuteModule("./");
+
+            //var request = System.Net.WebRequest.CreateHttp("");
+            //var response = request.GetResponseAsync();
+            //response.ContinueWith((data)=> data.Result.)
         }
     }
 }

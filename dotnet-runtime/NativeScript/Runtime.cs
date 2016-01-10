@@ -24,6 +24,7 @@ namespace RaisingStudio.NativeScript
         public const bool DebugMode = true;
         public static readonly string[] DebugFileList = new string[]
         {
+            "es6-shim.js",
             //"observable.js",
             //"dependency-observable.js",
             //"font-common.js",
@@ -74,7 +75,9 @@ namespace RaisingStudio.NativeScript
             "frame.js",            
             "page-common.js",
             "page.js",
-            "timer.js"
+            "timer.js",
+            "http.js",
+            "http-request.js"
         };
 #else
         public const bool DebugMode = false;

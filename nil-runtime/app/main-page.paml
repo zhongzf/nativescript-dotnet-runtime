@@ -1,0 +1,6 @@
+﻿<Window xmlns="https://github.com/perspex">
+  <StackPanel>
+    <Button Name="button">Test</Button>
+    <TextBlock Name="textbox">Hello world!</TextBlock>
+  </StackPanel>
+</Window>
