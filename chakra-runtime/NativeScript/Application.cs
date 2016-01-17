@@ -21,7 +21,8 @@ namespace RaisingStudio.NativeScript
 
         public static JavaScriptValue RunCallback(JavaScriptValue callee, bool isConstructCall, JavaScriptValue[] arguments, ushort argumentCount, IntPtr callbackData)
         {
-            var application = arguments[0].ConvertToObject().ToObject() as Application;
+            var jsValueObject = arguments[0].ConvertToObject();
+            var application = null as Application;
             if(application == null)
             {
                 application = new Application();

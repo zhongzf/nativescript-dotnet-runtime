@@ -25,6 +25,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <UseVSHostingProcess>false</UseVSHostingProcess>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -495,12 +496,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Chakra-Samples\JavaScript Runtime Samples\JSRT Win32 Hosting Samples\Edge JSRT Samples\C#\ChakraHostEdge.csproj">
-      <Project>{d672bc49-c454-4975-bd25-a555b9bdd793}</Project>
-      <Name>ChakraHostEdge</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="app\app.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -514,6 +509,12 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Chakra-Samples\ChakraCore Samples\JSRT Hosting Samples\C#\ChakraCoreHost\ChakraCoreHost.csproj">
+      <Project>{a5b03c42-2d25-4c3b-a8fd-22f4bc54966b}</Project>
+      <Name>ChakraCoreHost</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

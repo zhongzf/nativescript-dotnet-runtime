@@ -27,15 +27,16 @@ namespace RaisingStudio
             var types = new[]
             {
                 typeof(System.Windows.Application),
-                typeof(System.Windows.Window)
+                typeof(System.Windows.Window),
+                typeof(System.Console)
             };
 
 
 
-            var namespaceProvider = new NamespaceProvider("System.Windows");
             var context = new Context();
 
-            context.DefineVariable("windows").Assign(namespaceProvider);
+            context.DefineVariable("System").Assign(new NamespaceProvider("System"));
+            context.DefineVariable("SystemWindows").Assign(new NamespaceProvider("System.Windows"));
 
             var applicationPath = AppDomain.CurrentDomain.BaseDirectory;
             string fileName = Path.Combine(applicationPath, "app", "app.js");

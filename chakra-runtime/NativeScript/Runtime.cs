@@ -74,7 +74,7 @@ namespace RaisingStudio.NativeScript
 
         private static void StartDebugging()
         {
-            JavaScriptContext.StartDebugging();
+            //JavaScriptContext.StartDebugging();
         }
 
         public JavaScriptValue RunScript(JavaScriptValue callee, bool isConstructCall, JavaScriptValue[] arguments, ushort argumentCount, IntPtr callbackData)
